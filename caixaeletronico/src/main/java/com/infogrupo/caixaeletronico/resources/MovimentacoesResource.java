@@ -34,6 +34,7 @@ public class MovimentacoesResource {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Movimentacoes objDto) {
+		objDto.getCliente().setId(1);
 		Movimentacoes obj = movimentacoesService.gravarModificacao(objDto);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

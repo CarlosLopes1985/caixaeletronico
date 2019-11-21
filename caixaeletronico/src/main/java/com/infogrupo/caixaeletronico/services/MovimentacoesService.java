@@ -26,6 +26,7 @@ public class MovimentacoesService {
 	public Movimentacoes gravarModificacao(Movimentacoes mov) {
 		
 		if(mov.getTipo().getCod() == 1) {
+			
 		
 			Conta conta = contaRepository.findOne(mov.getCliente().getId());
 			
