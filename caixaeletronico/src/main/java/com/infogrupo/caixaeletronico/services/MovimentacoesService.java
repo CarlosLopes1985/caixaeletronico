@@ -23,17 +23,25 @@ public class MovimentacoesService {
 		return movimentacoesRepository.findAll();
 	}
 	
-	public Conta alterarSaldo(Movimentacoes mov) {
-		
-		Conta conta = contaRepository.findOne(mov.getCliente().getId());
+	public Movimentacoes gravarModificacao(Movimentacoes mov) {
 		
 		if(mov.getTipo().getCod() == 1) {
+		
+			Conta conta = contaRepository.findOne(mov.getCliente().getId());
 			
+			conta.setSaldo( 
+					conta.getSaldo() - mov.getValor()
+					);
 			
+			contaRepository.save(conta);
 			
 			
 		}
 		
 		return null;
+	}
+	
+	private void updateData(Conta newObj, Conta obj) {
+		newObj.setSaldo(obj.getSaldo());
 	}
 }
