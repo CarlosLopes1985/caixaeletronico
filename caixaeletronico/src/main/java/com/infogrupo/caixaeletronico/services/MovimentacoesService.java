@@ -11,6 +11,7 @@ import com.infogrupo.caixaeletronico.entity.dto.MovimentacoesDto;
 import com.infogrupo.caixaeletronico.enums.TipoMovimentacao;
 import com.infogrupo.caixaeletronico.repository.ContaRepository;
 import com.infogrupo.caixaeletronico.repository.MovimentacoesRepository;
+import com.infogrupo.caixaeletronico.services.exception.ObjectNotFoundException;
 
 @Service
 public class MovimentacoesService {
@@ -71,8 +72,12 @@ public class MovimentacoesService {
 		mov.setTipo(TipoMovimentacao.toEnum(objDto.getTipo()));
 		mov.setValor(objDto.getValor());
 		
-		Conta conta  = contaRepository.findOne(objDto.getIdConta()); 
+		Conta conta  = contaRepository.findOne(objDto.getIdConta());
 		
+		if(conta == null) {
+			throw new ObjectNotFoundException( "Objeto não encontrado! Id: " + objDto.getIdConta() + ", Tipo: " + Movimentacoes.class.getName());
+		}
+		 
 		mov.setConta(conta);
 		
 		return mov;
