@@ -1,6 +1,8 @@
 package com.infogrupo.caixaeletronico.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +33,9 @@ public class Conta implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="conta")
 	private Cliente cliente;
 	
-
+	@OneToMany(mappedBy="conta", cascade=CascadeType.ALL)
+	private List<Movimentacoes>movimentacoes = new ArrayList<Movimentacoes>();
+	
 	@OneToOne
 	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
@@ -87,6 +92,12 @@ public class Conta implements Serializable {
 	public String toString() {
 		return "Conta [id=" + id + ", numeroConta=" + numeroConta + ", saldo=" + saldo + ", cliente=" + cliente
 				+ ", agencia=" + agencia + "]";
+	}
+	public List<Movimentacoes> getMovimentacoes() {
+		return movimentacoes;
+	}
+	public void setMovimentacoes(List<Movimentacoes> movimentacoes) {
+		this.movimentacoes = movimentacoes;
 	}
 
 	

@@ -46,7 +46,7 @@ public class CaixaeletronicoApplication implements CommandLineRunner{
 		agenciaRepository.save(Arrays.asList(a1,a2));
 		
 		Conta conta1 = new Conta(null, 8445, 100., a1);
-		Conta conta2 = new Conta(null, 8445, 100., a2);
+		Conta conta2 = new Conta(null, 8446, 100., a2);
 		
 		contaRepository.save(Arrays.asList(conta1,conta2));
 		
@@ -55,13 +55,13 @@ public class CaixaeletronicoApplication implements CommandLineRunner{
 		
 		clienteRepository.save(Arrays.asList(c1,c2));
 		
-		Movimentacoes mo1 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),100., c1);
-		Movimentacoes mo2 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),120., c2);
-		Movimentacoes mo3 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),140., c1);
-		Movimentacoes mo4 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),200., c2);
-		Movimentacoes mo5 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),600., c2);
-		Movimentacoes mo6 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),300., c1);
-		Movimentacoes mo7 = new Movimentacoes(null, TipoMovimentacao.TRANSFERENCIA, new Date(),520., c1);
+		Movimentacoes mo1 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),100., conta1);
+		Movimentacoes mo2 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),120., conta2);
+		Movimentacoes mo3 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),140., conta2);
+		Movimentacoes mo4 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),200., conta1);
+		Movimentacoes mo5 = new Movimentacoes(null, TipoMovimentacao.DEPOSITO, new Date(),600., conta2);
+		Movimentacoes mo6 = new Movimentacoes(null, TipoMovimentacao.RETIRADA, new Date(),300., conta1);
+		Movimentacoes mo7 = new Movimentacoes(null, TipoMovimentacao.TRANSFERENCIA, new Date(),520., conta1);
 		
 		movimentacoesRepository.save(Arrays.asList(mo1,mo2,mo3,mo4,mo5,mo6,mo7));
 		

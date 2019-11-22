@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.infogrupo.caixaeletronico.entity.Movimentacoes;
+import com.infogrupo.caixaeletronico.entity.dto.MovimentacoesDto;
 import com.infogrupo.caixaeletronico.services.MovimentacoesService;
 
 @RestController
@@ -27,14 +28,13 @@ public class MovimentacoesResource {
 	public ResponseEntity<List<Movimentacoes>> findAllContas(){
 		
 		List<Movimentacoes>contas = movimentacoesService.buscarTodas();
-	
-		return ResponseEntity.ok().body(contas);
 		
+		return ResponseEntity.ok().body(contas);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody Movimentacoes objDto) {
-		objDto.getCliente().setId(1);
+	public ResponseEntity<Void> insert(@Valid @RequestBody MovimentacoesDto objDto) {
+		
 		Movimentacoes obj = movimentacoesService.gravarModificacao(objDto);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -30,8 +30,8 @@ public class Movimentacoes implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
-	private Cliente cliente;
+	@JoinColumn(name="conta_id")
+	private Conta conta;
 
 	public Integer getId() {
 		return id;
@@ -57,21 +57,14 @@ public class Movimentacoes implements Serializable{
 		this.dataMovimentacao = dataMovimentacao;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Movimentacoes(Integer id, TipoMovimentacao tipo, Date dataMovimentacao,Double valor, Cliente cliente) {
+	public Movimentacoes(Integer id, TipoMovimentacao tipo, Date dataMovimentacao,Double valor, Conta conta) {
 		super();
 		this.id = id;
 		this.tipo = (tipo==null) ? null : tipo.getCod();
 		this.dataMovimentacao = dataMovimentacao;
 		this.valor = valor;
-		this.cliente = cliente;
+		this.conta = conta;
 	}
 
 	public Movimentacoes() {
@@ -81,7 +74,7 @@ public class Movimentacoes implements Serializable{
 	@Override
 	public String toString() {
 		return "Movimentacoes [id=" + id + ", tipo=" + tipo + ", dataMovimentacao=" + dataMovimentacao + ", cliente="
-				+ cliente + "]";
+				+ conta + "]";
 	}
 
 	public Double getValor() {
@@ -90,6 +83,14 @@ public class Movimentacoes implements Serializable{
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 	
 	
